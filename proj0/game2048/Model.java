@@ -155,6 +155,18 @@ public class Model extends Observable {
      */
     public static boolean maxTileExists(Board b) {
         // TODO: Fill in this function.
+
+        //if (b.tile(i, j) == 2048)不行 类型不一样
+        //要用value()取得值 要是一个对象 在函数调用里不行
+        //先实现对象 在用value（）
+        //妈的 0是null 会有空指针访问错误 直接把0排除了 反正0是空的 本来就不应该计算最大值
+        for(int i=0;i<4;i++) {
+            for (int j = 0; j < 4; j++) {
+                Tile result=b.tile(i, j);
+                if (result!=null && result.value() == MAX_PIECE)
+                    return true;
+            }
+        }
         return false;
     }
 
