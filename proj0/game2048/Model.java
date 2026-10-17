@@ -178,6 +178,31 @@ public class Model extends Observable {
      */
     public static boolean atLeastOneMoveExists(Board b) {
         // TODO: Fill in this function.
+
+        //有没有空格
+        if(emptySpaceExists(b)==true)
+            return true;
+
+        //四周有没有相同数字
+        for(int i=0;i<=3;i++) {
+            for (int j = 0; j <=3; j++) {
+                Tile current=b.tile(i, j);
+
+                //
+                if(i+1<=3) {
+                    Tile up = b.tile(i + 1, j);
+
+                    if (current.value() == up.value())
+                        return true;
+                }
+
+                if(j+1<=3){
+                    Tile right = b.tile(i, j + 1);
+                    if(current.value()==right.value())
+                        return true;
+                }
+            }
+        }
         return false;
     }
 
