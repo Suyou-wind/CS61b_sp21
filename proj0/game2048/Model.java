@@ -109,10 +109,63 @@ public class Model extends Observable {
     public boolean tilt(Side side) {
         boolean changed;
         changed = false;
-
+        int size=board.size();
         // TODO: Modify this.board (and perhaps this.score) to account
         // for the tilt to the Side SIDE. If the board changed, set the
         // changed local variable to true.
+
+        board.setViewingPerspective(side);
+//列循环 x坐标
+        for(int col=0;col<size;col++){
+            int mergeRow=-1;
+//行循环 y坐标 从上到下
+            for(int row=size-2;row>=0;row--){
+                //初始化为row 防止找不到目的地 在这声明是为了给下面用
+                int destRow =row;
+//往上扫描
+                int scanRow=-1;
+                Tile destTile=null;
+                //不用每次扫描时都取 防止空指针
+                Tile current=board.tile(col,row);
+                if (current == null) {
+                    continue;
+                }
+
+                for(scanRow=row+1;scanRow<size;scanRow++){
+                    destTile=board.tile(col,scanRow);
+                    //current = board.tile(col,row);
+//确定目的地 空格和 可合并的数字
+                    if(destTile==null)
+                        destRow=scanRow;
+                    else if(destTile.value()==current.value() && scanRow!=mergeRow)
+                        destRow=scanRow;
+                    else
+                        break;
+                }
+//移动和合并
+//                if(destTile!=null && current!=null){
+//                    current=current.merge(col,destRow,destTile);
+//                    changed=true;
+//                }
+//                else if(current!=null){
+//                    current=current.move(col, destRow);
+//                    changed=true;
+//                }
+
+                //如果row和目的地相等 就什么都不做
+                if(row!=destRow) {
+                    boolean merge = board.move(col, destRow, current);
+                    changed = true;
+                    if (merge) {
+                        mergeRow = destRow;
+                        Tile tile = board.tile(col, destRow);
+                        score += tile.value();
+                    }
+                }
+            }
+        }
+
+        board.setViewingPerspective(Side.NORTH);
 
         checkGameOver();
         if (changed) {
