@@ -12,7 +12,7 @@ public class IntListExercises {
         IntList head = lst;
 
         if(lst == null){
-            return;
+            return ;
         }
 
         while (head.rest != null) {
@@ -20,10 +20,10 @@ public class IntListExercises {
             head = head.rest;
         }
 
-        if(head.rest==null){
+//        if(head.rest==null){
             head.first += c;
-            head = head.rest;
-        }
+//            head = head.rest;
+//        }
     }
 
     /**
