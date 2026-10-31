@@ -62,7 +62,7 @@ public class DebugExercise2 {
         int i = 0;
         int sum = 0;
         while (i < x.length) {
-            sum = sum + add(sum, x[i]);
+            sum = add(sum, x[i]);
             i = i + 1;
         }
         return sum;
@@ -82,6 +82,7 @@ public class DebugExercise2 {
     public static void main(String[] args) {
         int[] a = {1, 11, -1, -11};
         int[] b = {3, -3, 2, -1};
+        //should be 3+11+2-1=15
 
         int sumOfElementwiseMaxes = sumOfElementwiseMaxes(a, b);
         System.out.println(sumOfElementwiseMaxes);
