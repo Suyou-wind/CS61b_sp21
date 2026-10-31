@@ -90,6 +90,13 @@ public class IntListExercises {
             lst.first *= lst.first;
         }
 
-        return currElemIsPrime || squarePrimes(lst.rest);
+        boolean restUpdated = squarePrimes(lst.rest);
+        return currElemIsPrime || restUpdated;
+
+
+        //两边的值会一起改
+        //检查是后检查的 值也是改之后的 能不能先检查 再改？
+        //而且每次递归调用都会再跑一遍
+        //但是先检查就retuen了
     }
 }
