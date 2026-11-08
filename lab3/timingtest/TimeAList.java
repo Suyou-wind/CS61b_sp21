@@ -28,7 +28,7 @@ public class TimeAList {
         AList<Integer> opCounts = new AList<>();
 
         int counter=0;
-        int[] size={1000,2000,4000,8000,16000,32000,64000,12800};
+        int[] size={1000,2000,4000,8000,16000,32000,64000,128000};
 //        for(counter=0;counter<400;counter++){
 //            AList<Integer> L = new AList<>();
 //            L.addLast(counter);
