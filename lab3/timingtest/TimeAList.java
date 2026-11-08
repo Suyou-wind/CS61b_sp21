@@ -38,7 +38,7 @@ public class TimeAList {
         for(int number:size) {
             Stopwatch middle = new Stopwatch();
             AList<Integer> L = new AList<>();
-            for (counter = 0; counter < number; counter++) {
+            for (; counter < number; counter++) {
 //                AList<Integer> L = new AList<>();
                 L.addLast(counter);
             }
